@@ -1,5 +1,6 @@
 class CarsController < ApplicationController
   before_action :set_car, only: [:show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   # GET /cars
   def index
@@ -18,10 +19,11 @@ class CarsController < ApplicationController
   # POST /cars
   def create
     @car = Car.new(car_params)
+    @car.user = current_user
     if @car.save
       redirect_to @car, notice: 'Car was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
