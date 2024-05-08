@@ -39,8 +39,26 @@
           </div>
         </div>
       <% end %>
+      <div class="row">
+        <div class="col-md-12">
+          <%= link_to 'Book', new_car_booking_path(@car), class: "btn btn-primary" %>
+        </div>
+      </div>
     </div>
   </div>
+
+  <% if user_signed_in? %>
+  <% car_bookings = current_user.bookings.where(car_id: @car.id) %>
+    <% if !car_bookings.empty? %>
+      <div>
+        <h2>Your bookings for this car:</h2>
+        <% car_bookings.each do |booking| %>
+          <p>You've booked this car for <%= booking.date %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+  <% end %>
 
   <%= link_to 'Back', cars_path, class: "btn btn-secondary mt-3" %>
 </div>
