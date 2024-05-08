@@ -26,3 +26,9 @@
 </table>
 
 <%= link_to 'New Car', new_car_path %>
+
+<% if user_signed_in? %>
+  <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete } %>
+<% else %>
+  <%= link_to 'Sign In', new_user_session_path %>
+<% end %>
