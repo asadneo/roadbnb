@@ -1,21 +1,46 @@
-<p>
-  <strong>Make:</strong>
-  <%= @car.make %>
-</p>
+<div class="container">
+  <h1 class="mt-4">Car Details</h1>
 
-<p>
-  <strong>Model:</strong>
-  <%= @car.model %>
-</p>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <p class="mb-1"><strong>Make:</strong></p>
+          <p><%= @car.make %></p>
+        </div>
+        <div class="col-md-4">
+          <p class="mb-1"><strong>Model:</strong></p>
+          <p><%= @car.model %></p>
+        </div>
+        <div class="col-md-4">
+          <p class="mb-1"><strong>Year:</strong></p>
+          <p><%= @car.year %></p>
+        </div>
+      </div>
 
-<p>
-  <strong>Year:</strong>
-  <%= @car.year %>
-</p>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="mb-1"><strong>Image:</strong></p>
+          <img src="<%= @car.img_url %>" alt="Car image" class="img-fluid" style="max-height: 200px;">
+        </div>
+      </div>
 
-<p>
-  <img src="<%= @car.img_url %>" alt="Car image" height="100">
-</p>
+      <div class="row">
+        <div class="col-md-12">
+          <p class="mb-1"><strong>Contact the owner:</strong></p>
+          <p><%= @car.user.email %></p>
+        </div>
+      </div>
 
-<%= link_to 'Edit', edit_car_path(@car) %> |
-<%= link_to 'Back', cars_path %>
+      <% if user_signed_in? && current_user.id == @car.user_id %>
+        <div class="row">
+          <div class="col-md-12">
+            <%= link_to 'Edit', edit_car_path(@car), class: "btn btn-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= link_to 'Back', cars_path, class: "btn btn-secondary mt-3" %>
+</div>

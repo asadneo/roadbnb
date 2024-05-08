@@ -1,5 +1,5 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: [:show]
+  before_action :set_car, only: [:show, :edit, :update]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   # GET /cars
@@ -9,6 +9,17 @@ class CarsController < ApplicationController
 
   # GET /cars/1
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @car.update(car_params)
+      redirect_to @car, notice: 'Car was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   # GET /cars/new
