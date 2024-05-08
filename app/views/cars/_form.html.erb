@@ -1,27 +1,9 @@
-<%= form_with(model: car, local: true) do |form| %>
+<%= simple_form_for(car) do |form| %>
 
+  <%= form.input :make %>
+  <%= form.input :model %>
+  <%= form.input :year %>
+  <%= form.input :img_url %>
 
-  <div class="field">
-    <%= form.label :make %>
-    <%= form.text_field :make, id: :car_make %>
-  </div>
-
-  <div class="field">
-    <%= form.label :model %>
-    <%= form.text_field :model, id: :car_model %>
-  </div>
-
-  <div class="field">
-    <%= form.label :year %>
-    <%= form.number_field :year, id: :car_year %>
-  </div>
-
-  <div class="field">
-    <%= form.label :img_url %>
-    <%= form.text_field :img_url, id: :car_img_url %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <%= form.submit %>
 <% end %>
