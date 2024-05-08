@@ -1,0 +1,6 @@
+<h1>Book <%= @car.make %> <%= @car.model %></h1>
+
+<%= simple_form_for [@car, @booking] do |form|%>
+  <%= form.input :date %>
+  <%= form.submit %>
+<% end %>
