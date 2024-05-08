@@ -1,1 +1,28 @@
 <h1>Welcome to RoadBnb</h1>
+
+<h2>Cars Listing</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Image</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cars.each do |car| %>
+      <tr>
+        <td><%= car.make %></td>
+        <td><%= car.model %></td>
+        <td><%= car.year %></td>
+        <td><img src="<%= car.img_url %>" alt="Car image" height="50"></td>
+        <td><%= link_to 'Show', car %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Car', new_car_path %>
