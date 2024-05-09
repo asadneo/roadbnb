@@ -1,63 +1,56 @@
 <div class="container">
-  <h1 class="mt-4">Car Details</h1>
-
-  <div class="card">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-4">
-          <p class="mb-1"><strong>Make:</strong></p>
-          <p><%= @car.make %></p>
-        </div>
-        <div class="col-md-4">
-          <p class="mb-1"><strong>Model:</strong></p>
-          <p><%= @car.model %></p>
-        </div>
-        <div class="col-md-4">
-          <p class="mb-1"><strong>Year:</strong></p>
-          <p><%= @car.year %></p>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <p class="mb-1"><strong>Image:</strong></p>
-          <img src="<%= @car.img_url %>" alt="Car image" class="img-fluid" style="max-height: 200px;">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <p class="mb-1"><strong>Contact the owner:</strong></p>
-          <p><%= @car.user.email %></p>
-        </div>
-      </div>
-
-      <% if user_signed_in? && current_user.id == @car.user_id %>
-        <div class="row">
-          <div class="col-md-12">
-            <%= link_to 'Edit', edit_car_path(@car), class: "btn btn-primary" %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card car-card">
+        <div class="row no-gutters">
+          <div class="col-md-6">
+            <div class="car-details p-4">
+              <h1 class="car-title mb-4"><%= @car.make %> <%= @car.model %></h1>
+              <div class="row mb-3">
+                <div class="col-md-4">
+                  <p class="mb-1"><strong>Make:</strong></p>
+                  <p><%= @car.make %></p>
+                </div>
+                <div class="col-md-4">
+                  <p class="mb-1"><strong>Model:</strong></p>
+                  <p><%= @car.model %></p>
+                </div>
+                <div class="col-md-4">
+                  <p class="mb-1"><strong>Year:</strong></p>
+                  <p><%= @car.year %></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="mb-1"><strong>Contact the owner:</strong></p>
+                  <p><%= @car.user.email %></p>
+                </div>
+              </div>
+              <% if user_signed_in? && current_user.id == @car.user_id %>
+                <div class="row">
+                  <div class="col-md-12">
+                    <%= link_to edit_car_path(@car), class: "btn btn-link" do %>
+                      <i class="fas fa-pen"></i> Edit
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+              <div class="row">
+                <div class="col-md-12">
+                  <%= link_to cars_path, class: "btn btn-link" do %>
+                    <i class="fas fa-arrow-left"></i> Back
+                  <% end %>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      <% end %>
-      <div class="row">
-        <div class="col-md-12">
-          <%= link_to 'Book', new_car_booking_path(@car), class: "btn btn-primary" %>
+          <div class="col-md-6">
+            <div class="car-image">
+              <img src="<%= @car.img_url %>" alt="Car image" class="img-fluid">
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-<%# if user_signed_in? %>
-  <%# car_bookings = current_user.bookings.where(car_id: @car.id) %>
-    <%# if !car_bookings.empty? %>
-      <%# <div>
-        <%# <h2>Your bookings for this car:</h2>
-        <%# car_bookings.each do |booking| %>
-          <%# <p>You've booked this car for <%= booking.date %></p>
-        <%# end %>
-      <%# </div> %>
-    <%# end %>
-<%# end %>
-
-  <%= link_to 'Back', cars_path, class: "btn btn-secondary mt-3" %>
 </div>
