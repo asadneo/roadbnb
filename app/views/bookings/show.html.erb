@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card mt-5">
+        <div class="card-header bg-primary text-white">
+          <h3 class="text-center">Booking Details</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="mb-1"><strong>Car Image:</strong></p>
+              <img src="<%= @car.img_url %>" alt="Car image" class="img-fluid" style="max-height: 200px;">
+            </div>
+            <div class="col-md-6">
+              <p class="mb-1"><strong>Contact the Owner:</strong></p>
+              <p><%= @car.user.email %></p>
+              <p><strong>Booking Date:</strong> <%= @booking.date %></p>
+              <p><strong>Car Make:</strong> <%= @car.make %></p>
+            </div>
+          </div>
+        </div>

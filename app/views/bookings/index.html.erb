@@ -1,1 +1,19 @@
-<h1>my bookings</h1>
+<div class="container">
+  <h1 class="mt-4 text-center">My Bookings</h1>
+  <div class="row mt-4">
+    <% @bookings.each do |booking| %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <img src="<%= booking.car.img_url %>" class="card-img-top" alt="Car image">
+          <div class="card-body">
+            <h5 class="card-title text-center"><%= booking.car.make %> <%= booking.car.model %></h5>
+            <p class="card-text text-center">Year: <%= booking.car.year %></p>
+            <div class="text-center">
+              <%= link_to 'Show', car_booking_path(booking.car.id,booking.id), class: 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
