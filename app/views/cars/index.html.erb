@@ -17,12 +17,3 @@
       </div>
     <% end %>
   </div>
-
-  <%= link_to 'New Car', new_car_path, class: 'btn btn-success' %>
-
-  <% if user_signed_in? %>
-    <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-danger' %>
-  <% else %>
-    <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary' %>
-  <% end %>
-</div>
