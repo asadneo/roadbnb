@@ -1,11 +1,16 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user!, :set_car, only: [:new, :create]
+
+  def index
+    @user = User.find(params[:user_id])
+    @bookings = @user.bookings
+  end
+
   def new
-    @car = Car.find(params[:car_id])
     @booking = Booking.new
   end
 
   def create
-    @car = Car.find(params[:car_id])
     @booking = Booking.new(booking_params)
     @booking.user_id = current_user.id
     @booking.car = @car
@@ -21,4 +26,10 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:date)
   end
+
+  def set_car
+    @car = Car.find(params[:car_id])
+  end
+
+
 end
