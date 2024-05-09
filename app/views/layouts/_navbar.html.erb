@@ -1,20 +1,20 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+<div class="container mt-4">
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="background-color: #f8f9fa;">
+    <div class="container-fluid">
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <div class="d-flex align-items-center">
+          <%= image_tag "roadbnb_logo.png", alt: "RoadBnb Logo", style: "width: 75px; height: 75px;" %>
+          <span class="ms-2" style="font-weight: bold; color: #0b5559; font-size: 40px;">RoadBnb</span>
+        </div>
+      <% end %>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", cars_path, class: "nav-link" %>
-          </li>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
+
             <%= link_to "My Bookings", bookings_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
@@ -24,13 +24,34 @@
               <%= link_to "Another action", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
+
+            <%= link_to "Home", root_path, class: "nav-link", style: "color: #0b5559;" %>
+
           </li>
-        <% else %>
           <li class="nav-item">
-            <%= link_to 'Sign In', new_user_session_path, class: "nav-link" %>
+            <%= link_to "Browse Cars", cars_path, class: "nav-link", style: "color: #0b5559;" %>
           </li>
-        <% end %>
-      </ul>
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <%= link_to "List a car", new_car_path, class: "dropdown-item" %>
+                <%= link_to "My Bookings", "#", class: "dropdown-item" %>
+                <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+              </div>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to 'Sign In', new_user_session_path, class: "nav-link", style: "color: #0d6efd;" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
+<style>
+  .navbar-lewagon .navbar-nav .nav-link:hover {
+    color: #dc3545;
+  }
+</style>
