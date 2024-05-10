@@ -1,9 +1,15 @@
 <%= simple_form_for(car) do |form| %>
-
   <%= form.input :make %>
   <%= form.input :model %>
   <%= form.input :year %>
-  <%= form.input :img_url %>
+  <%= form.input :description, as: :text %>
 
-  <%= form.submit %>
+  <h3>Images</h3>
+  <%= form.simple_fields_for :car_images do |image_form| %>
+    <%= image_form.input :image, label: 'Image URL' %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= form.button :submit, class: 'btn btn-primary' %>
+  </div>
 <% end %>

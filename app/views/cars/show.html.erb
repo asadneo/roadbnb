@@ -20,6 +20,12 @@
                   <p><%= @car.year %></p>
                 </div>
               </div>
+              <div class="row mb-3">
+                <div class="col-md-12">
+                  <p class="mb-1"><strong>Description:</strong></p>
+                  <p><%= @car.description %></p>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-md-12">
                   <p class="mb-1"><strong>Contact the owner:</strong></p>
@@ -45,10 +51,13 @@
             </div>
           </div>
           <div class="col-md-6">
-            <div class="car-image">
-              <img src="<%= @car.img_url %>" alt="Car image" class="img-fluid">
-            </div>
-          </div>
+  <div class="car-images">
+    <img src="<%= @car.main_image %>" alt="Car main image" class="img-fluid mb-3">
+    <% @car.car_images.each do |car_image| %>
+      <img src="<%= car_image.image %>" alt="Car image" class="img-fluid mb-3">
+    <% end %>
+  </div>
+</div>
         </div>
       </div>
     </div>

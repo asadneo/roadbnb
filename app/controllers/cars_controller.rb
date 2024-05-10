@@ -5,7 +5,7 @@ class CarsController < ApplicationController
   # GET /cars
   def index
     if params[:query].present?
-      @cars = Car.search_by_make_model_year(params[:query])
+      @cars = Car.search_by_make_model_year_description(params[:query])
     else
       @cars = Car.all
     end
@@ -29,26 +29,28 @@ class CarsController < ApplicationController
   # GET /cars/new
   def new
     @car = Car.new
+    @car.car_images.build
   end
 
   # POST /cars
   def create
     @car = Car.new(car_params)
     @car.user = current_user
+
     if @car.save
       redirect_to @car, notice: 'Car was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
   private
 
-    def set_car
-      @car = Car.find(params[:id])
-    end
+  def set_car
+    @car = Car.find(params[:id])
+  end
 
-    def car_params
-      params.require(:car).permit(:make, :model, :year, :img_url, :user_id)
-    end
+  def car_params
+    params.require(:car).permit(:make, :model, :year, :description, car_images_attributes: [:id, :image, :_destroy])
+  end
 end
