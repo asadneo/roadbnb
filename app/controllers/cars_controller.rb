@@ -4,7 +4,11 @@ class CarsController < ApplicationController
 
   # GET /cars
   def index
-    @cars = Car.all
+    if params[:query].present?
+      @cars = Car.search_by_make_model_year(params[:query])
+    else
+      @cars = Car.all
+    end
   end
 
   # GET /cars/1
