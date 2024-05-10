@@ -1,4 +1,13 @@
-<div class="row mt-3">
+  <%= form_with(url: cars_path, method: :get, local: true, class: 'mb-4') do |form| %>
+  <div class="input-group">
+    <%= form.text_field :query, class: 'form-control', placeholder: 'Search cars...' %>
+    <div class="input-group-append">
+      <%= form.submit 'Search', class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+  <div class="row mt-3">
   <% @cars.each do |car| %>
     <div class="col-md-4 mb-4">
       <div class="card h-100"> <!-- Added h-100 class to make cards equal height -->
