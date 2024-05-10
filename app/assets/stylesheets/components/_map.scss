@@ -1,0 +1,14 @@
+.navbar {
+  z-index: 1000; /* You can adjust this value as needed */
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+
+.cars-scrollable {
+  max-height: calc(100vh - 56px); // Limit height to viewport height minus navbar height
+  overflow-y: auto; // Enable vertical scrolling if content overflows
+  z-index: 1; // Ensure the cars list remains above the map
+}

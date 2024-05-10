@@ -5,6 +5,12 @@ class CarsController < ApplicationController
   # GET /cars
   def index
     @cars = Car.all
+    @markers = @cars.geocoded.map do |car|
+      {
+        lat: car.latitude,
+        lng: car.longitude
+      }
+    end
   end
 
   # GET /cars/1
@@ -45,6 +51,6 @@ class CarsController < ApplicationController
     end
 
     def car_params
-      params.require(:car).permit(:make, :model, :year, :img_url, :user_id)
+      params.require(:car).permit(:make, :model, :year, :img_url, :user_id, :address)
     end
 end
